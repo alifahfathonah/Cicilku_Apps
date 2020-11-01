@@ -117,7 +117,7 @@ class Auth extends BaseController
 		$this->userModel->save([
 			'name' => $this->request->getVar('name'),
 			'email' => $this->request->getVar('email'),
-			'image' => 'default.jpg',
+			'image' => 'default.png',
 			'password' => password_hash($this->request->getVar('password-repeat'), PASSWORD_DEFAULT),
 			'role_id' => 1, //default administrator
 			'is_active' => 1
@@ -127,6 +127,12 @@ class Auth extends BaseController
 		return redirect()->to('/auth');
 	}
 
+	public function logout()
+	{
+		session()->remove(['email', 'role_id', 'id_user']);
+		session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Your have been logged out</div>');
+		return redirect()->to('/auth');
+	}
 	//--------------------------------------------------------------------
 
 }
