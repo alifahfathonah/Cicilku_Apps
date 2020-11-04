@@ -71,6 +71,7 @@
          <!-- Looping menu -->
          <?php
          foreach ($menu as $m) : ?>
+         
             <li class="sidebar__item sidebar__item--header mt-3"><?= $m['menu']; ?></li>
 
             <!--query Sub menu -->
@@ -85,7 +86,7 @@
 
             <!-- Looping subMenu -->
             <?php foreach ($subMenu as $sm) : ?>
-               <li class="sidebar__item"><a href="<?= base_url($sm['url']); ?>"><span class="<?= $sm['icon']; ?>"></span> <?= $sm['title']; ?></a></li>
+               <li class="sidebar__item <?=($subMenuTitle == $sm['title'])? 'sidebar__item--active' : '';?> "><a href="<?= base_url($sm['url']); ?>"><span class="<?= $sm['icon']; ?>"></span> <?= $sm['title']; ?></a></li>
             <?php endforeach; ?>
             <!-- End looping subMenu -->
          <?php endforeach; ?>

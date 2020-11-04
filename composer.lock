@@ -427,6 +427,7 @@
                 "issues": "https://github.com/fzaninotto/Faker/issues",
                 "source": "https://github.com/fzaninotto/Faker/tree/master"
             },
+            "abandoned": true,
             "time": "2020-10-27T14:15:58+00:00"
         },
         {
