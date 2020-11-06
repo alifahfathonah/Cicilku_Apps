@@ -6,7 +6,7 @@
    <div class="row">
       <header class="main__header col-12 mb-2">
          <div class="main__title">
-            <h4>Dashboard</h4>
+            <h4><?= $subMenuTitle ?></h4>
             <ul class="breadcrumb">
                <li class="breadcrumb-item active">Dashboard</li>
             </ul>

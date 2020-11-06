@@ -17,7 +17,7 @@
    <!-- and Reza Admin CSS -->
    <link rel="stylesheet" type="text/css" href="<?= base_url('/dist/css/reza-admin.min.css'); ?>">
    <!-- Favicon -->
-   <link rel="icon" href="<?= base_url('/dist/img/logo1.png'); ?>">
+   <link rel="icon" href="<?= base_url('/dist/img/cicilku.png'); ?>">
 </head>
 
 <body>
@@ -71,7 +71,7 @@
          <!-- Looping menu -->
          <?php
          foreach ($menu as $m) : ?>
-         
+
             <li class="sidebar__item sidebar__item--header mt-3"><?= $m['menu']; ?></li>
 
             <!--query Sub menu -->
@@ -86,7 +86,7 @@
 
             <!-- Looping subMenu -->
             <?php foreach ($subMenu as $sm) : ?>
-               <li class="sidebar__item <?=($subMenuTitle == $sm['title'])? 'sidebar__item--active' : '';?> "><a href="<?= base_url($sm['url']); ?>"><span class="<?= $sm['icon']; ?>"></span> <?= $sm['title']; ?></a></li>
+               <li class="sidebar__item <?= ($subMenuTitle == $sm['title']) ? 'sidebar__item--active' : ''; ?> "><a href="<?= base_url($sm['url']); ?>"><span class="<?= $sm['icon']; ?>"></span> <?= $sm['title']; ?></a></li>
             <?php endforeach; ?>
             <!-- End looping subMenu -->
          <?php endforeach; ?>
@@ -104,9 +104,29 @@
    </footer>
 
    <!-- jQuery first, then Bootstrap JS, and Reza Admin JS-->
-   <script src="<?= base_url('/dist/js/jquery-3.5.1.slim.min.js'); ?>"></script>
+   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+   <!-- <script src="<?= base_url('/dist/js/jquery-3.5.1.slim.min.js'); ?>"></script> -->
    <script src="<?= base_url('/dist/js/bootstrap.min.js'); ?>"></script>
    <script src="<?= base_url('/dist/js/reza-admin.min.js'); ?>"></script>
+   <script>
+      $('.change').on('click', function() {
+         const menuId = $(this).data('menu');
+         const roleId = $(this).data('role');
+
+         $.ajax({
+            url: "<?= base_url('/admin/role/changeaccess'); ?>",
+            type: 'post',
+            data: {
+               menuId: menuId,
+               roleId: roleId
+            },
+            success: function() {
+               document.location.href = "<?= base_url('/admin/role'); ?>";
+            },
+         });
+      });
+   </script>
 
 </body>
 

@@ -32,13 +32,32 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->get('/auth', 'Auth::index');
-$routes->get('/register', 'Auth::register');
+
+//auth route
+$routes->get('/auth', 'Auth::index', ['filter' => 'auth']);
+$routes->get('/register', 'Auth::register', ['filter' => 'auth']);
 $routes->get('/logout', 'Auth::logout');
 
-$routes->get('/admin', 'Admin::index');
-$routes->get('/admin/menu', 'Menu::index');
-$routes->get('/admin/user-menu/new', 'Menu::new');
+//admin route
+$routes->get('/admin', 'Admin::index', ['filter' => 'access']);
+
+//menu route
+$routes->get('/admin/menu', 'Menu::index', ['filter' => 'access']);
+$routes->post('/admin/user-menu/save', 'Menu::save', ['filter' => 'access']);
+$routes->post('/admin/user-menu/update', 'Menu::update', ['filter' => 'access']);
+$routes->post('/admin/user-menu/delete', 'Menu::delete', ['filter' => 'access']);
+//submenu route
+$routes->get('/admin/submenu', 'Menu::indexSubMenu', ['filter' => 'access']);
+$routes->get('/admin/submenu/add', 'Menu::saveSubMenu', ['filter' => 'access']);
+$routes->post('/admin/submenu/save', 'Menu::saveSubMenu', ['filter' => 'access']);
+$routes->get('/admin/submenu/edit', 'Menu::EditSubMenu', ['filter' => 'access']);
+$routes->post('/admin/submenu/edit', 'Menu::EditSubMenu', ['filter' => 'access']);
+$routes->post('/admin/submenu/delete', 'Menu::deleteSubMenu', ['filter' => 'access']);
+
+//role access route
+$routes->get('/admin/role', 'Role::index', ['filter' => 'access']);
+$routes->post('/admin/role/changeaccess', 'Role::changeaccess', ['filter' => 'access']);
+$routes->post('/admin/role/unlockaccess', 'Role::unlock', ['filter' => 'access']);
 
 /**
  * --------------------------------------------------------------------

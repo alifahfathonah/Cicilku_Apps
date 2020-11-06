@@ -12,28 +12,28 @@
             <?= csrf_field(); ?>
 
             <div class="form-group">
-               <input type="text" name="name" placeholder="Full Name ..." class="form form--focus-blue mt-0 <?= ($validation->hasError('name')) ? 'is-invalid' : ''; ?>" value="<?= old('name'); ?>">
+               <input type="text" name="name" placeholder="Full Name ..." class="form form--focus-blue mt-0 <?= ($validation->hasError('name')) ? 'is-invalid form--danger' : ''; ?>" value="<?= old('name'); ?>">
                <div class="invalid-feedback pl-4">
                   <small id="input-help" class="form-text text-danger"><?= $validation->getError('name'); ?></small>
                </div>
             </div>
 
             <div class="form-group">
-               <input type="text" name="email" placeholder="Email ..." class="form form--focus-blue mt-0 <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" value="<?= old('email'); ?>">
+               <input type="text" name="email" placeholder="Email ..." class="form form--focus-blue mt-0 <?= ($validation->hasError('email')) ? 'is-invalid form--danger' : ''; ?>" value="<?= old('email'); ?>">
                <div class="invalid-feedback pl-4">
                   <small id="input-help" class="form-text text-danger"><?= $validation->getError('email'); ?></small>
                </div>
             </div>
 
             <div class="form-group">
-               <input type="password" name="password" placeholder="Password ..." class="form form--focus-blue mt-0 <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>">
+               <input type="password" name="password" placeholder="Password ..." class="form form--focus-blue mt-0 <?= ($validation->hasError('password')) ? 'is-invalid form--danger' : ''; ?>">
                <div class="invalid-feedback pl-4">
                   <small id="input-help" class="form-text text-danger"><?= $validation->getError('password'); ?></small>
                </div>
             </div>
 
             <div class="form-group">
-               <input type="password" name="password-repeat" placeholder="Repeat Password ..." class="form form--focus-blue mt-0 <?= ($validation->hasError('password-repeat')) ? 'is-invalid' : ''; ?>">
+               <input type="password" name="password-repeat" placeholder="Repeat Password ..." class="form form--focus-blue mt-0 <?= ($validation->hasError('password-repeat')) ? 'is-invalid form--danger' : ''; ?>">
                <div class="invalid-feedback pl-4">
                   <small id="input-help" class="form-text text-danger"><?= $validation->getError('password-repeat'); ?></small>
                </div>

@@ -58,6 +58,7 @@ class Auth extends BaseController
 						'id_user' => $user['id'],
 						'email' => $user['email'],
 						'role_id' => $user['role_id'],
+						'admin_unlock' => 0
 
 					];
 					session()->set($data);
@@ -129,6 +130,7 @@ class Auth extends BaseController
 
 	public function logout()
 	{
+		session_destroy();
 		session()->remove(['email', 'role_id', 'id_user']);
 		session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert">Your have been logged out</div>');
 		return redirect()->to('/auth');

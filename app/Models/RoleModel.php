@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MenuModel extends Model
+class RoleModel extends Model
 {
-   protected $table = 'tbl_user_menu';
+   protected $table = 'tbl_user_role';
 
    protected $primaryKey = 'id';
    protected $useTimestamps = true;
@@ -15,7 +15,7 @@ class MenuModel extends Model
    protected $useSoftDeletes = true;
 
    protected $dateFormat = 'int';
-   protected $allowedFields = ['menu'];
+   protected $allowedFields = ['role'];
 
 
    protected $createdField  = 'created_at';

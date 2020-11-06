@@ -21,7 +21,7 @@ class Admin extends BaseController
 
       $data = [
          'title' => 'My Dashboard',
-         'subMenuTitle' => 'Dashboard',
+         'subMenuTitle' => 'Dashboard Admin',
          'user' => $this->userModel->where(['id' => $this->idUserSession])->first(),
          'db' =>  $this->db
       ];
