@@ -42,7 +42,15 @@ class Access implements FilterInterface
 
 
          if (!$cek) {
-            return redirect()->to('my');
+            if ($role_id == 1) {
+               return redirect()->to('admin');
+            } else if ($role_id == 2) {
+               return redirect()->to('op');
+            } elseif ($role_id == 3) {
+               return redirect()->to('tc');
+            } else {
+               return redirect()->to('st');
+            }
          }
       }
    }

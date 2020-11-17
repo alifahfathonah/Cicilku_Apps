@@ -56,7 +56,7 @@ class Menu extends BaseController
          'menu' => $this->request->getVar('menu')
       ])) {
          session()->setFlashdata('pesan', 'Role user menu <b>' . $this->request->getVar('menu') . '</b> berhasil dibuat');
-         return redirect()->to('/admin/menu');
+         return redirect()->to('/menu');
       } else {
          echo 'gagal';
       }
@@ -74,7 +74,7 @@ class Menu extends BaseController
             ]
          ]
       ])) {
-         return redirect()->to('/admin/menu')->withInput()->with('validation', $this->validation);
+         return redirect()->to('/menu')->withInput()->with('validation', $this->validation);
       }
 
 
@@ -83,7 +83,7 @@ class Menu extends BaseController
          'menu' => $this->request->getVar('menu')
       ])) {
          session()->setFlashdata('pesan', 'Role user menu <b>' . $this->request->getVar('menu') . '</b> berhasil diupdate');
-         return redirect()->to('/admin/menu');
+         return redirect()->to('/menu');
       } else {
          echo 'gagal';
       }
@@ -94,7 +94,7 @@ class Menu extends BaseController
 
       if ($this->menuModel->delete(['id', $this->request->getVar('menu_id')])) {
          session()->setFlashdata('pesan', 'Berhasil di delete');
-         return redirect()->to('/admin/menu');
+         return redirect()->to('/menu');
       } else {
          echo 'gagal';
       }

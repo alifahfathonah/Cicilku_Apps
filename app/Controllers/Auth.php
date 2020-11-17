@@ -95,7 +95,7 @@ class Auth extends BaseController
 					if ($role_id_cek == 1) {
 						return redirect()->to('/admin');
 					} else {
-						return redirect()->to('/my');
+						return redirect()->to('/');
 					}
 				} else {
 					session()->setFlashdata('pesan', '<div class="alert alert-danger" role="alert">Wrong password!</div>');

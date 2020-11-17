@@ -10,9 +10,24 @@
    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('asset/images/favicon.png'); ?>">
    <!-- Font Awesome 5 -->
    <script src="https://kit.fontawesome.com/ccded69204.js" crossorigin="anonymous"></script>
+
+
+
    <!-- Custom Stylesheet -->
-   <link href="<?= base_url('asset/css/style.css'); ?>" rel="stylesheet">
    <link href="<?= base_url('asset/plugins/toastr/css/toastr.min.css'); ?>" rel="stylesheet">
+   <link href="<?= base_url('asset/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css'); ?>" rel="stylesheet">
+   <!-- Page plugins css -->
+   <link href="<?= base_url('asset/plugins/clockpicker/dist/jquery-clockpicker.min.css'); ?>" rel="stylesheet">
+   <!-- Color picker plugins css -->
+   <link href="<?= base_url('asset/plugins/jquery-asColorPicker-master/css/asColorPicker.css'); ?>" rel="stylesheet">
+
+   <!-- Date picker plugins css -->
+   <link href="<?= base_url('asset/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>" rel="stylesheet">
+   <!-- Daterange picker plugins css -->
+   <link href="<?= base_url('asset/plugins/timepicker/bootstrap-timepicker.min.css'); ?>" rel="stylesheet">
+   <link href="<?= base_url('asset/plugins/bootstrap-daterangepicker/daterangepicker.css'); ?>" rel="stylesheet">
+
+   <link href="<?= base_url('asset/css/style.css'); ?>" rel="stylesheet">
 </head>
 
 <body>
@@ -178,7 +193,7 @@
                   </li>
                   <li class="icons dropdown d-none d-md-flex">
                      <a href="javascript:void(0)" class="log-user">
-                        <span class="font-weight-bold"><?= $user['name']; ?> (<?= $user['id']; ?>)</span>
+                        <span class="font-weight-bold"><?= $user['username']; ?> (<?= $user['id']; ?>)</span>
                      </a>
                   </li>
                   <li class="icons dropdown">
@@ -323,17 +338,31 @@
    <!--**********************************
         Scripts
     ***********************************-->
-   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
    <script src="<?= base_url('asset/plugins/common/common.min.js'); ?>"></script>
    <script src="<?= base_url('asset/js/custom.min.js'); ?>"></script>
    <script src="<?= base_url('asset/js/settings.js'); ?>"></script>
    <script src="<?= base_url('asset/js/gleek.js'); ?>"></script>
    <script src="<?= base_url('asset/js/styleSwitcher.js'); ?>"></script>
 
-   <!-- Toastr -->
-   <script src="<?= base_url('asset/plugins/toastr/js/toastr.min.js'); ?>"></script>
-   <script src="<?= base_url('asset/plugins/toastr/js/toastr.init.js'); ?>"></script>
+   <script src="<?= base_url('asset/plugins/moment/moment.js'); ?>"></script>
+   <script src="<?= base_url('asset/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js'); ?>"></script>
+   <!-- Clock Plugin JavaScript -->
+   <script src="<?= base_url('asset/plugins/clockpicker/dist/jquery-clockpicker.min.js'); ?>"></script>
+   <!-- Color Picker Plugin JavaScript -->
+   <script src="<?= base_url('asset/plugins/jquery-asColorPicker-master/libs/jquery-asColor.js'); ?>"></script>
+   <script src="<?= base_url('asset/plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js'); ?>"></script>
+   <script src="<?= base_url('asset/plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js'); ?>"></script>
+   <!-- Date Picker Plugin JavaScript -->
+   <script src="<?= base_url('asset/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
 
+   <!-- Date range Plugin JavaScript -->
+   <script src="<?= base_url('asset/plugins/timepicker/bootstrap-timepicker.min.js'); ?>"></script>
+   <script src="<?= base_url('asset/plugins/bootstrap-daterangepicker/daterangepicker.js'); ?>"></script>
+
+   <script src="<?= base_url('asset/js/plugins-init/form-pickers-init.js'); ?>"></script>
+
+   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
    <script>
       $('.change').on('click', function() {
          const menuId = $(this).data('menu');

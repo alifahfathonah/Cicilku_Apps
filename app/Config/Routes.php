@@ -67,6 +67,16 @@ $routes->get('/role', 'Role::index', ['filter' => 'access']);
 $routes->post('/role/changeaccess', 'Role::changeaccess', ['filter' => 'access']);
 $routes->post('/role/unlockaccess', 'Role::unlock', ['filter' => 'access']);
 
+
+//
+$routes->get('/op', 'Operator::index', ['filter' => 'access']);
+
+//semester-man route
+$routes->get('/semester', 'Semester::index', ['filter' => 'access']);
+$routes->post('/semester/save', 'Semester::save', ['filter' => 'access']);
+$routes->post('/semester/edit', 'Semester::edit', ['filter' => 'access']);
+$routes->post('/semester/update', 'Semester::update', ['filter' => 'access']);
+$routes->post('/semester/delete', 'Semester::delete', ['filter' => 'access']);
 // $routes->get('/(:any)', 'Auth::index', ['filter' => 'access']);
 
 
