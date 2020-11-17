@@ -42,7 +42,7 @@ $routes->get('/logout', 'Auth::logout');
 $routes->get('/admin', 'Admin::index', ['filter' => 'access']);
 
 //menu route
-$routes->get('/admin/menu', 'Menu::index', ['filter' => 'access']);
+$routes->get('/menu', 'Menu::index', ['filter' => 'access']);
 $routes->post('/admin/user-menu/save', 'Menu::save', ['filter' => 'access']);
 $routes->post('/admin/user-menu/update', 'Menu::update', ['filter' => 'access']);
 $routes->post('/admin/user-menu/delete', 'Menu::delete', ['filter' => 'access']);
@@ -55,17 +55,19 @@ $routes->post('/admin/users/delete', 'Users::delete', ['filter' => 'access']);
 
 
 //submenu route
-$routes->get('/admin/submenu', 'Menu::indexSubMenu', ['filter' => 'access']);
-$routes->get('/admin/submenu/add', 'Menu::saveSubMenu', ['filter' => 'access']);
-$routes->post('/admin/submenu/save', 'Menu::saveSubMenu', ['filter' => 'access']);
-$routes->get('/admin/submenu/edit', 'Menu::EditSubMenu', ['filter' => 'access']);
-$routes->post('/admin/submenu/edit', 'Menu::EditSubMenu', ['filter' => 'access']);
-$routes->post('/admin/submenu/delete', 'Menu::deleteSubMenu', ['filter' => 'access']);
+$routes->get('/menu/submenu', 'Menu::indexSubMenu', ['filter' => 'access']);
+$routes->get('/menu/submenu/add', 'Menu::saveSubMenu', ['filter' => 'access']);
+$routes->post('/menu/submenu/save', 'Menu::saveSubMenu', ['filter' => 'access']);
+$routes->get('/menu/submenu/edit', 'Menu::EditSubMenu', ['filter' => 'access']);
+$routes->post('/menu/submenu/edit', 'Menu::EditSubMenu', ['filter' => 'access']);
+$routes->post('/menu/submenu/delete', 'Menu::deleteSubMenu', ['filter' => 'access']);
 
 //role access route
-$routes->get('/admin/role', 'Role::index', ['filter' => 'access']);
-$routes->post('/admin/role/changeaccess', 'Role::changeaccess', ['filter' => 'access']);
-$routes->post('/admin/role/unlockaccess', 'Role::unlock', ['filter' => 'access']);
+$routes->get('/role', 'Role::index', ['filter' => 'access']);
+$routes->post('/role/changeaccess', 'Role::changeaccess', ['filter' => 'access']);
+$routes->post('/role/unlockaccess', 'Role::unlock', ['filter' => 'access']);
+
+// $routes->get('/(:any)', 'Auth::index', ['filter' => 'access']);
 
 
 

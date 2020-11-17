@@ -57,7 +57,7 @@
                               <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                               </button>
                            </div>
-                           <form action="<?= base_url('/admin/users/save') ?>" method="POST">
+                           <form action="<?= base_url('users/save') ?>" method="POST">
                               <div class="modal-body">
                                  <div class="form-group">
                                     <?= csrf_field(); ?>
@@ -105,7 +105,7 @@
                                              <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                              </button>
                                           </div>
-                                          <form action="<?= base_url('/admin/users/update') ?>" method="POST">
+                                          <form action="<?= base_url('users/update') ?>" method="POST">
                                              <div class="modal-body">
                                                 <div class="form-group">
                                                    <?= csrf_field(); ?>
@@ -138,7 +138,7 @@
                                           </div>
                                           <div class="modal-footer">
                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                             <form action="<?= base_url('/admin/users/delete'); ?>" method="POST">
+                                             <form action="<?= base_url('users/delete'); ?>" method="POST">
                                                 <input type="hidden" name="role_id" value="<?= $r['id']; ?>">
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                              </form>

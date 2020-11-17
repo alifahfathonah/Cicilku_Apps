@@ -47,9 +47,9 @@ class Role extends BaseController
 
          session()->set(['admin_unlock' => 1]);
          session()->setFlashdata('pesan', "Access Unclock!");
-         return redirect()->to('/admin/role/');
+         return redirect()->to('/role');
       } else {
-         return redirect()->to('/admin/role/');
+         return redirect()->to('/role');
       }
    }
 

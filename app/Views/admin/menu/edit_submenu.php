@@ -5,8 +5,8 @@
 <div class="row page-titles mx-0">
    <div class="col p-md-0">
       <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="<?= base_url('/admin/menu'); ?>">Menu</a></li>
-         <li class="breadcrumb-item"><a href="<?= base_url('/admin/submenu'); ?>"><?= $subMenuTitle; ?></a></li>
+         <li class="breadcrumb-item"><a href="<?= base_url('/menu'); ?>">Menu</a></li>
+         <li class="breadcrumb-item"><a href="<?= base_url('/menu/submenu'); ?>"><?= $subMenuTitle; ?></a></li>
          <li class="breadcrumb-item active">Edit Sub Menu</li>
       </ol>
    </div>
@@ -23,7 +23,7 @@
                </div>
 
                <div class="form-validation">
-                  <form action="<?= base_url('/admin/submenu/edit'); ?>" method="POST">
+                  <form action="<?= base_url('/menu/submenu/edit'); ?>" method="POST">
                      <?= csrf_field(); ?>
                      <input type="hidden" name="id" value="<?= $subMenu['id']; ?>">
                      <div class="form-group row">
@@ -83,7 +83,7 @@
                      </div>
                      <div class="form-group row row">
                         <div class="col-lg-8 ml-auto">
-                           <a href="<?= base_url('admin/submenu'); ?>" class="btn btn-secondary">Cancel</a>
+                           <a href="<?= base_url('/menu/submenu'); ?>" class="btn btn-secondary">Cancel</a>
                            <button class="btn btn-primary" type="submit">Update</button>
                         </div>
                      </div>

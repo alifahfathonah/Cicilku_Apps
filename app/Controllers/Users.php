@@ -51,7 +51,7 @@ class Users extends BaseController
             ]
          ]
       ])) {
-         return redirect()->to('/admin/users')->withInput()->with('validation', $this->validation);
+         return redirect()->to('/users')->withInput()->with('validation', $this->validation);
       }
 
 
@@ -59,7 +59,7 @@ class Users extends BaseController
          'role' => $this->request->getVar('role')
       ])) {
          session()->setFlashdata('pesan', 'Role user <b>' . $this->request->getVar('menu') . '</b> berhasil dibuat');
-         return redirect()->to('/admin/users');
+         return redirect()->to('/users');
       } else {
          echo 'gagal';
       }
@@ -77,7 +77,7 @@ class Users extends BaseController
             ]
          ]
       ])) {
-         return redirect()->to('/admin/users')->withInput()->with('validation', $this->validation);
+         return redirect()->to('/users')->withInput()->with('validation', $this->validation);
       }
 
 
@@ -86,7 +86,7 @@ class Users extends BaseController
          'role' => $this->request->getVar('role')
       ])) {
          session()->setFlashdata('pesan', 'Role user role <b>' . $this->request->getVar('role') . '</b> berhasil diupdate');
-         return redirect()->to('/admin/users');
+         return redirect()->to('/users');
       } else {
          echo 'gagal';
       }
@@ -97,7 +97,7 @@ class Users extends BaseController
 
       if ($this->roleModel->delete(['id', $this->request->getVar('role_id')])) {
          session()->setFlashdata('pesan', 'Berhasil di delete');
-         return redirect()->to('/admin/users');
+         return redirect()->to('/users');
       } else {
          echo 'gagal';
       }

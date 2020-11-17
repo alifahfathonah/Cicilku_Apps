@@ -145,7 +145,7 @@ class Menu extends BaseController
                ]
             ]
          ])) {
-            return redirect()->to('/admin/submenu/add?id=' . $id)->withInput()->with('validation', $this->validation);
+            return redirect()->to('/menu/submenu/add?id=' . $id)->withInput()->with('validation', $this->validation);
          }
 
          //convert string on to int 1 
@@ -161,7 +161,7 @@ class Menu extends BaseController
          ])) {
 
             session()->setFlashdata('pesan', 'Menu <b>' . $this->request->getVar('title') . '</b> berhasil ditambahkan');
-            return redirect()->to('/admin/submenu');
+            return redirect()->to('/menu/submenu');
          } else {
             echo 'gagal';
          }
@@ -216,7 +216,7 @@ class Menu extends BaseController
                ]
             ]
          ])) {
-            return redirect()->to('/admin/submenu/edit?id=' . $id)->withInput()->with('validation', $this->validation);
+            return redirect()->to('/menu/submenu/edit?id=' . $id)->withInput()->with('validation', $this->validation);
          }
 
 
@@ -234,7 +234,7 @@ class Menu extends BaseController
          ])) {
 
             session()->setFlashdata('pesan', 'Menu <b>' . $this->request->getVar('title') . '</b> berhasil diupdate');
-            return redirect()->to('/admin/submenu');
+            return redirect()->to('/menu/submenu');
          } else {
             echo 'gagal';
          }
@@ -258,7 +258,7 @@ class Menu extends BaseController
       if ($this->subMenuModel->delete(['id' => $this->request->getPost('submenu_id'), 'title' => $this->request->getPost('title')])) {
 
          session()->setFlashdata('pesan', 'Menu <b>' . $this->request->getVar('title') . '</b> berhasil dihapus');
-         return redirect()->to('/admin/submenu');
+         return redirect()->to('/menu/submenu');
       } else {
          echo 'gagal';
       }

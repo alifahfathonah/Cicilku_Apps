@@ -56,14 +56,13 @@ class Auth extends BaseController
 
 		//check username 4 table users(petugas,guru,siswa,user)
 		$userModel = [
-			'0' => $this->petugasModel->where(['username' => $username])->first(),
-			'1' => $this->guruModel->where(['username' => $username])->first(),
-			'2' => $this->siswaModel->where(['username' => $username])->first(),
-			'3' => $this->userModel->where(['username' => $username])->first(),
+			'1' => $this->guruModel->where(['username' => $username])->orWhere(['id' => $username])->first(),
+			'2' => $this->userModel->where(['username' => $username])->first(),
+			'3' => $this->siswaModel->where(['username' => $username])->orWhere(['id' => $username])->first(),
+			'4' => $this->petugasModel->where(['username' => $username])->orWhere(['id' => $username])->first(),
 		];
 
-
-		for ($i = 0; $i < $count; $i++) {
+		for ($i = 1; $i <= $count; $i++) {
 			if ($userModel[$i]) {
 				$is_active_cek = $userModel[$i]['is_active'];
 				$username_cek = $userModel[$i]['username'];
@@ -71,14 +70,11 @@ class Auth extends BaseController
 				$role_id_cek = $userModel[$i]['role_id'];
 				$id_cek = $userModel[$i]['id'];
 				break;
-			} else {
-				session()->setFlashdata('pesan', '<div class="alert alert-danger" role="alert">Email is not registration</div>');
-				return redirect()->to('/auth')->withInput()->with('validation', $this->validation);
 			}
 		}
 
 
-		if ($username_cek) {
+		if (!empty($username_cek)) {
 			//user active check
 			if ($is_active_cek == 1) {
 

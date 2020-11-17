@@ -14,6 +14,7 @@ class Admin extends BaseController
       $this->validation = \Config\Services::validation();
       $this->db = \Config\Database::connect();
       $this->idUserSession = session()->get('id_user');
+      $this->roleIdSession = session()->get('role_id');
    }
 
    public function index()

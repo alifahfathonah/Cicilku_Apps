@@ -177,22 +177,15 @@
                      </div>
                   </li>
                   <li class="icons dropdown d-none d-md-flex">
-                     <a href="javascript:void(0)" class="log-user" data-toggle="dropdown">
-                        <span>English</span> <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
+                     <a href="javascript:void(0)" class="log-user">
+                        <span class="font-weight-bold"><?= $user['name']; ?> (<?= $user['id']; ?>)</span>
                      </a>
-                     <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
-                        <div class="dropdown-content-body">
-                           <ul>
-                              <li><a href="javascript:void()">English</a></li>
-                              <li><a href="javascript:void()">Dutch</a></li>
-                           </ul>
-                        </div>
-                     </div>
                   </li>
                   <li class="icons dropdown">
                      <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                         <span class="activity active"></span>
-                        <img src="images/user/1.png" height="40" width="40" alt="">
+                        <img src="<?= base_url('/asset/users/img/' . $user['image']); ?>" height="40" width="40" alt="">
+
                      </div>
                      <div class="drop-down dropdown-profile   dropdown-menu">
                         <div class="dropdown-content-body">
@@ -200,17 +193,21 @@
                               <li>
                                  <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
                               </li>
+
                               <li>
                                  <a href="email-inbox.html"><i class="icon-envelope-open"></i> <span>Inbox</span>
                                     <div class="badge gradient-3 badge-pill badge-primary">3</div>
                                  </a>
                               </li>
 
-                              <hr class="my-2">
                               <li>
-                                 <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
+                                 <a href="app-profile.html"><i class="icon-log"></i> <span>Setting</span></a>
                               </li>
-                              <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                              <hr class="my-2">
+                              <!-- <li>
+                                 <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
+                              </li> -->
+                              <li><a href="<?= base_url('/logout'); ?>"><i class="icon-key"></i> <span>Logout</span></a></li>
                            </ul>
                         </div>
                      </div>
@@ -238,13 +235,18 @@
 
                <!-- Query Menu -->
                <?php
-               $role_id = $user['role_id'];
+
+
+               $role_id = session()->get('role_id');
+
+
                $queryMenu = "SELECT `tbl_user_menu`.`id`, `menu`
                          FROM `tbl_user_menu` JOIN `tbl_user_access_menu`
                            ON `tbl_user_menu`.`id` = `tbl_user_access_menu`.`menu_id`
                         WHERE `tbl_user_access_menu`.`role_id` = $role_id
                      ORDER BY `tbl_user_access_menu`.`menu_id` ASC";
                $menu = $db->query($queryMenu)->getResultArray();
+
                ?>
 
                <!-- Looping menu -->
@@ -338,14 +340,14 @@
          const roleId = $(this).data('role');
 
          $.ajax({
-            url: "<?= base_url('/admin/role/changeaccess'); ?>",
+            url: "<?= base_url('/role/changeaccess'); ?>",
             type: 'post',
             data: {
                menuId: menuId,
                roleId: roleId
             },
             success: function() {
-               document.location.href = "<?= base_url('/admin/role'); ?>";
+               document.location.href = "<?= base_url('role'); ?>";
             },
          });
       });

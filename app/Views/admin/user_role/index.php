@@ -5,7 +5,7 @@
 <div class="row page-titles mx-0">
    <div class="col p-md-0">
       <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="javascript:void(0)"><?= $subMenuTitle; ?></a></li>
+         <li class="breadcrumb-item"><a href=""><?= $subMenuTitle; ?></a></li>
       </ol>
    </div>
 </div>
@@ -42,7 +42,7 @@
                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                            </button>
                         </div>
-                        <form action="<?= base_url('/admin/role/unlockaccess'); ?>" method="POST">
+                        <form action="<?= base_url('/role/unlockaccess'); ?>" method="POST">
                            <div class="modal-body">
                               <p>Aksi ini memerlukan password administrator, Masukkan password untuk konfirmasi!</p>
                               <div class="form-group">

@@ -5,8 +5,8 @@
 <div class="row page-titles mx-0">
    <div class="col p-md-0">
       <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="<?= base_url('/admin/menu'); ?>">Menu</a></li>
-         <li class="breadcrumb-item active"><a href="javascript:void(0)"><?= $subMenuTitle; ?></a></li>
+         <li class="breadcrumb-item"><a href="<?= base_url('/menu'); ?>">Menu</a></li>
+         <li class="breadcrumb-item active"><a href=""><?= $subMenuTitle; ?></a></li>
       </ol>
    </div>
 </div>
@@ -55,7 +55,7 @@
                                  </h6>
                                  <p class="card-text text-muted">url: <span class="font-italic"><?= $sm['url']; ?></span></p>
                                  <!-- Button Edit -->
-                                 <a href="<?= base_url('/admin/submenu/edit?id=' . $sm['id']); ?>" class="card-link btn btn btn-primary">Edit</a>
+                                 <a href="<?= base_url('/menu/submenu/edit?id=' . $sm['id']); ?>" class="card-link btn btn btn-primary">Edit</a>
 
 
                                  <button href="" class="card-link btn btn btn-danger" data-toggle="modal" data-target="#Modaldelete_<?= $sm['id']; ?>">Delete</button>
@@ -73,7 +73,7 @@
                                           </div>
                                           <div class="modal-footer">
                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                             <form action="<?= base_url('/admin/submenu/delete'); ?>" method="POST">
+                                             <form action="<?= base_url('/menu/submenu/delete'); ?>" method="POST">
                                                 <?= csrf_field(); ?>
                                                 <input type="hidden" name="submenu_id" value="<?= $sm['id']; ?>">
                                                 <input type="hidden" name="title" value="<?= $sm['title']; ?>">
@@ -90,7 +90,7 @@
                      <?php endforeach; ?>
 
                      <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                        <a href="<?= base_url('/admin/submenu/add?id=' . $m['id']); ?>">
+                        <a href="<?= base_url('/menu/submenu/add?id=' . $m['id']); ?>">
                            <div class="card text-center">
                               <div class="card-body">
                                  <span style="font-size: 100px;">

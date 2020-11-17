@@ -30,6 +30,7 @@ class Access implements FilterInterface
          $uri = service('uri');
          $url = $uri->getSegment(1);
 
+
          //ambil menu id dari tabel subMenu
          $querySubMenu = $this->subMenuModel->where(['url' => $url])->first();
          $menu_id =  $querySubMenu['menu_id'];
@@ -37,11 +38,11 @@ class Access implements FilterInterface
          //cocokan dengan access menu
 
 
-         $cek = $this->userAccessMenuModel->where(['role_id' => $role_id, 'menu_id' => $menu_id])->get();
+         $cek = $this->userAccessMenuModel->where(['role_id' => $role_id, 'menu_id' => $menu_id])->first();
 
 
          if (!$cek) {
-            return redirect()->to('/');
+            return redirect()->to('my');
          }
       }
    }
