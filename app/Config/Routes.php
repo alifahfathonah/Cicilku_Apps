@@ -77,6 +77,11 @@ $routes->post('/semester/save', 'Semester::save', ['filter' => 'access']);
 $routes->post('/semester/edit', 'Semester::edit', ['filter' => 'access']);
 $routes->post('/semester/update', 'Semester::update', ['filter' => 'access']);
 $routes->post('/semester/delete', 'Semester::delete', ['filter' => 'access']);
+
+//kelas-man route
+$routes->get('/class', 'Kelas::index', ['filter' => 'access']);
+$routes->get('/class/add', 'Kelas::add', ['filter' => 'access']);
+
 // $routes->get('/(:any)', 'Auth::index', ['filter' => 'access']);
 
 

@@ -35,7 +35,7 @@
                         </div>
                         <button type="submit" class="btn login-form__btn submit w-100">Masuk</button>
                      </form>
-                     <p class="mt-5 login-form__footer">Dont have account? <a href="<?= base_url('/register'); ?>" class="text-primary">Sign Up</a> now</p>
+                     <!-- <p class="mt-5 login-form__footer">Dont have account? <a href="<?= base_url('/register'); ?>" class="text-primary">Sign Up</a> now</p> -->
                   </div>
                </div>
             </div>

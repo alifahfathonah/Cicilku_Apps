@@ -88,7 +88,7 @@
 
 
 
-                  <table class="table table--gray mb-3 mt-3">
+                  <table class="table">
                      <thead>
                         <tr>
                            <th>#</th>
