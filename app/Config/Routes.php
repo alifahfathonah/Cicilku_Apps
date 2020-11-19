@@ -78,10 +78,23 @@ $routes->post('/semester/edit', 'Semester::edit', ['filter' => 'access']);
 $routes->post('/semester/update', 'Semester::update', ['filter' => 'access']);
 $routes->post('/semester/delete', 'Semester::delete', ['filter' => 'access']);
 
+//guru-man route
+$routes->get('/teachers', 'Teacher::index', ['filter' => 'access']);
+$routes->get('/teachers/add', 'Teacher::add', ['filter' => 'access']);
+
 //kelas-man route
 $routes->get('/class', 'Kelas::index', ['filter' => 'access']);
 $routes->get('/class/add', 'Kelas::add', ['filter' => 'access']);
 
+
+
+//guru-dash route
+$routes->get('/tc', 'Guru::index', ['filter' => 'access']);
+
+
+
+//siswa-dash route
+$routes->get('/st', 'Siswa::index', ['filter' => 'access']);
 // $routes->get('/(:any)', 'Auth::index', ['filter' => 'access']);
 
 

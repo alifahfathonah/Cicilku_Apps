@@ -26,7 +26,6 @@
    <!-- Daterange picker plugins css -->
    <link href="<?= base_url('asset/plugins/timepicker/bootstrap-timepicker.min.css'); ?>" rel="stylesheet">
    <link href="<?= base_url('asset/plugins/bootstrap-daterangepicker/daterangepicker.css'); ?>" rel="stylesheet">
-
    <link href="<?= base_url('asset/css/style.css'); ?>" rel="stylesheet">
 </head>
 
@@ -361,6 +360,8 @@
    <script src="<?= base_url('asset/plugins/bootstrap-daterangepicker/daterangepicker.js'); ?>"></script>
 
    <script src="<?= base_url('asset/js/plugins-init/form-pickers-init.js'); ?>"></script>
+
+
 
    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
    <script>
