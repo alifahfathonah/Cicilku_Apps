@@ -80,8 +80,12 @@ $routes->post('/semester/delete', 'Semester::delete', ['filter' => 'access']);
 
 //guru-man route
 $routes->get('/teachers', 'Teacher::index', ['filter' => 'access']);
+$routes->get('/teachers/(:any)/edit', 'Teacher::update/$1', ['filter' => 'access']);
+$routes->post('/teachers/update', 'Teacher::update', ['filter' => 'access']);
+$routes->post('/teachers/changepassword', 'Teacher::changepassword', ['filter' => 'access']);
 $routes->get('/teachers/add', 'Teacher::add', ['filter' => 'access']);
 $routes->post('/teachers/save', 'Teacher::save', ['filter' => 'access']);
+$routes->post('/teachers/delete', 'Teacher::delete', ['filter' => 'access']);
 
 
 //kelas-man route

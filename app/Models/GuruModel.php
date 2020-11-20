@@ -9,6 +9,7 @@ class GuruModel extends Model
    protected $table = 'tbl_guru';
    protected $primaryKey = 'id';
    protected $useTimestamps = true;
+   protected $useSoftDeletes = true;
    protected $dateFormat = 'int';
    protected $allowedFields = ['nip', 'username', 'password', 'email', 'nama', 'nohp', 'image', 'role_id', 'is_active'];
 

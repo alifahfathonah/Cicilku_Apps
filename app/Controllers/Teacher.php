@@ -27,7 +27,7 @@ class Teacher extends BaseController
          'db' =>  $this->db,
          'guru' => $this->guruModel->findAll(),
          'user' => $this->petugasModel->where(['id' => $this->idUserSession])->first(),
-         'validation' => $this->validation
+         'validation' => $this->validation,
       ];
       return view('operator/guru/index', $data);
    }
@@ -116,43 +116,116 @@ class Teacher extends BaseController
       }
    }
 
-   // public function update()
-   // {
-   //    //validation include
-   //    if (!$this->validate([
-   //       'role' => [
-   //          'rules' =>   'required|trim|is_unique[tbl_user_role.role]|alpha_space|max_length[128]',
-   //          'errors' => [
-   //             'required' => 'User role tidak boleh kosong!',
-   //             'is_unique' => 'User role sudah ada.'
-   //          ]
-   //       ]
-   //    ])) {
-   //       return redirect()->to('/users')->withInput()->with('validation', $this->validation);
-   //    }
+   public function update($id = null)
+   {
+      if ($id) {
 
+         $data = [
+            'title' => 'Edit Teacher',
+            'subMenuTitle' => 'Teacher Management',
+            'db' =>  $this->db,
+            'guru' => $this->guruModel->where(['id' => decrypt_url($id)])->first(),
+            'user' => $this->petugasModel->where(['id' => $this->idUserSession])->first(),
+            'validation' => $this->validation
+         ];
+         return view('operator/guru/edit_guru', $data);
+      } else {
 
-   //    if ($this->roleModel->save([
-   //       'id' => $this->request->getVar('role_id'),
-   //       'role' => $this->request->getVar('role')
-   //    ])) {
-   //       session()->setFlashdata('pesan', 'Role user role <b>' . $this->request->getVar('role') . '</b> berhasil diupdate');
-   //       return redirect()->to('/users');
-   //    } else {
-   //       echo 'gagal';
-   //    }
-   // }
+         $cek_username = $this->guruModel->where(['username' => $this->request->getVar('username')])->first();
+         if ($cek_username) {
+            $is_unique = ($cek_username['id'] === $this->request->getVar('id')) ? '' : '|is_unique[tbl_guru.username]';
+            $err_is_unique = ($cek_username['id'] === $this->request->getVar('id')) ? "" :  " 'is_unique' => 'Username sudah digunakan.' ";
+         } else {
+            $is_unique = '';
+            $err_is_unique = '';
+         }
+         //validation include
+         if (!$this->validate([
+            'nip' => [
+               'rules' =>   'required|trim|is_unique[tbl_guru.id]|numeric',
+               'errors' => [
+                  'required' => 'Nomor Induk Pegawai tidak boleh kosong!',
+                  'is_unique' => 'Nomor Induk Pegawai sudah ada.',
+                  'numeric' => 'Harus berupa angka.'
+               ]
+            ],
+            'nama' => [
+               'rules' =>   'required|trim',
+               'errors' => [
+                  'required' => 'Nama tidak boleh kosong!',
+               ]
+            ],
+            'nohp' => [
+               'rules' =>   'required|trim|numeric',
+               'errors' => [
+                  'required' => 'No Telephone tidak boleh kosong!',
+                  'numeric' => 'Harus berupa angka.'
+               ]
+            ],
+            'email' => [
+               'rules' =>   'required|trim|valid_email',
+               'errors' => [
+                  'required' => 'Email tidak boleh kosong!',
+                  'valid_email' => 'Harus berupa Email!'
+               ]
+            ],
+            'username' => [
+               'rules' =>   'required|trim' . $is_unique . '|alpha_numeric',
+               'errors' => [
+                  'required' => 'Username tidak boleh kosong!',
+                  $err_is_unique,
+                  'alpha_numeric' => 'Harus Berupa huruf atau angka atau kombinasinya.'
 
-   // public function delete()
-   // {
+               ]
+            ],
+         ])) {
+            return redirect()->to('/teachers/' . encrypt_url($this->request->getVar('id')) . '/edit')->withInput()->with('validation', $this->validation);
+         }
 
-   //    if ($this->roleModel->delete(['id', $this->request->getVar('role_id')])) {
-   //       session()->setFlashdata('pesan', 'Berhasil di delete');
-   //       return redirect()->to('/users');
-   //    } else {
-   //       echo 'gagal';
-   //    }
-   // }
+         $is_active  = ($this->request->getVar('is_active')) ? 1 : 0;
+
+         if ($this->guruModel->save([
+            'id' => $this->request->getVar('id'),
+            'nip' => $this->request->getVar('nip'),
+            'username' => $this->request->getVar('username'),
+            'email' => $this->request->getVar('email'),
+            'nama' => $this->request->getVar('nama'),
+            'nohp' => $this->request->getVar('nohp'),
+            'image' => 'default.png',
+            'role_id' => 3, //guru
+            'is_active' => $is_active
+         ])) {
+            session()->setFlashdata('pesan', ' Data <b>' . $this->request->getVar('nama') . '</b> berhasil diUpdate');
+            return redirect()->to('/teachers');
+         } else {
+            echo 'gagal';
+         }
+      }
+   }
+
+   public function changepassword()
+   {
+      if ($this->guruModel->save([
+         'id' => $this->request->getVar('id'),
+         'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
+      ])) {
+         session()->setFlashdata('pesan', ' Password <b>' . $this->request->getVar('nama') . '</b> berhasil diUpdate (Pass : ' . $this->request->getVar('password') . ')');
+         return redirect()->to('/teachers');
+      } else {
+         echo 'gagal';
+      }
+   }
+
+   public function delete()
+   {
+
+      if ($this->guruModel->delete(['id', $this->request->getVar('id')])) {
+         session()->setFlashdata('pesan', 'Data <b>' . $this->request->getVar('nama') . '</b>  berhasil di delete');
+         return redirect()->to('/teachers');
+      } else {
+         echo 'gagal';
+      }
+   }
 
    //--------------------------------------------------------------------
 

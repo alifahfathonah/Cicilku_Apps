@@ -77,8 +77,32 @@
                                  <?= ($g['is_active'] == 1) ? 'active' : 'inactive'; ?>
                               </td>
                               <td>
-                                 <a href="<?= base_url('teachers/edit'); ?>">Edit </a> |
-                                 <a href="">Delete </a>
+                                 <a href="<?= base_url('teachers/' . encrypt_url($g['id']) . '/edit'); ?>" class="badge badge-primary">Edit</a> |
+                                 <a href="" class="badge badge-danger" data-toggle="modal" data-target="#deleteModalg<?= $g['id']; ?>">Delete</a>
+
+                                 <!-- Modal Delete -->
+                                 <div class="modal fade" id="deleteModalg<?= $g['id']; ?>">
+                                    <div class="modal-dialog" role="document">
+                                       <div class="modal-content">
+                                          <div class="modal-header">
+                                             <h5 class="modal-text"><span class="text-danger">Dangerous</span>, are you sure?</h5>
+                                             <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                             </button>
+                                          </div>
+                                          <div class="modal-body">
+                                             <p>This action cannot be undone, it will delete data Teacher <b><?= $g['nama']; ?></b> ?</p>
+                                          </div>
+                                          <div class="modal-footer">
+                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                             <form action="<?= base_url('/teachers/delete'); ?>" method="POST">
+                                                <input type="hidden" name="id" value="<?= $g['id']; ?>">
+                                                <input type="hidden" name="nama" value="<?= $g['nama']; ?>">
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                             </form>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
                               </td>
                            </tr>
                         <?php
