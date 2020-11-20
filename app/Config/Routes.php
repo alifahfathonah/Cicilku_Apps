@@ -81,6 +81,8 @@ $routes->post('/semester/delete', 'Semester::delete', ['filter' => 'access']);
 //guru-man route
 $routes->get('/teachers', 'Teacher::index', ['filter' => 'access']);
 $routes->get('/teachers/add', 'Teacher::add', ['filter' => 'access']);
+$routes->post('/teachers/save', 'Teacher::save', ['filter' => 'access']);
+
 
 //kelas-man route
 $routes->get('/class', 'Kelas::index', ['filter' => 'access']);

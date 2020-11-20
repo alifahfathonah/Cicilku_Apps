@@ -20,9 +20,6 @@
                   <h4><?= $subMenuTitle; ?></h4>
                </div>
 
-
-
-
                <!-- Alert -->
                <?php if (session()->getFlashdata('pesan')) : ?>
 
@@ -53,9 +50,11 @@
                      <thead>
                         <tr>
                            <th width="10px">#</th>
-                           <th>NIP</th>
+                           <th>Nomor Induk Pegawai</th>
                            <th>Teacher</th>
                            <th>Username</th>
+                           <th>Email</th>
+                           <th>Telp</th>
                            <th>Status</th>
                            <th>Action</th>
                         </tr>
@@ -66,13 +65,17 @@
                         foreach ($guru as $g) : ?>
                            <tr>
                               <td><?= $n++; ?></td>
-                              <td>183232300</td>
+                              <td> <?= $g['nip']; ?></td>
                               <td>
                                  <img src="<?= base_url('asset/users/img/default.png'); ?>" class=" rounded-circle mr-3 img-thumbnail" alt="" width="30px">
                                  <?= $g['nama']; ?>
                               </td>
                               <td><?= $g['username']; ?></td>
-                              <td><?= $g['is_active'] ?></td>
+                              <td><?= $g['email']; ?></td>
+                              <td><?= $g['nohp']; ?></td>
+                              <td>
+                                 <?= ($g['is_active'] == 1) ? 'active' : 'inactive'; ?>
+                              </td>
                               <td>
                                  <a href="<?= base_url('teachers/edit'); ?>">Edit </a> |
                                  <a href="">Delete </a>

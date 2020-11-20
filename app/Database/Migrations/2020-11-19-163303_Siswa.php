@@ -14,6 +14,10 @@ class Siswa extends Migration
 				'constraint' => 32,
 				'unsigned' => TRUE,
 			],
+			'nis' => [
+				'type' => 'VARCHAR',
+				'constraint' => '20',
+			],
 			'username' => [
 				'type' => 'VARCHAR',
 				'constraint' => '128'

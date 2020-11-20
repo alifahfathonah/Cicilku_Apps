@@ -56,10 +56,10 @@ class Auth extends BaseController
 
 		//check username 4 table users(petugas,guru,siswa,user)
 		$userModel = [
-			'1' => $this->guruModel->where(['username' => $username])->orWhere(['id' => $username])->first(),
+			'1' => $this->guruModel->where(['username' => $username])->orWhere(['nip' => $username])->first(),
 			'2' => $this->userModel->where(['username' => $username])->first(),
-			'3' => $this->siswaModel->where(['username' => $username])->orWhere(['id' => $username])->first(),
-			'4' => $this->petugasModel->where(['username' => $username])->orWhere(['id' => $username])->first(),
+			'3' => $this->siswaModel->where(['username' => $username])->orWhere(['nis' => $username])->first(),
+			'4' => $this->petugasModel->where(['username' => $username])->orWhere(['nip' => $username])->first(),
 		];
 
 		for ($i = 1; $i <= $count; $i++) {

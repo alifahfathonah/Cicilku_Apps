@@ -14,6 +14,10 @@ class Guru extends Migration
 				'constraint' => 32,
 				'unsigned' => TRUE,
 			],
+			'nip' => [
+				'type' => 'VARCHAR',
+				'constraint' => '20',
+			],
 			'username' => [
 				'type' => 'VARCHAR',
 				'constraint' => '128'
@@ -29,6 +33,10 @@ class Guru extends Migration
 			'nama' => [
 				'type' => 'VARCHAR',
 				'constraint' => '128'
+			],
+			'nohp' => [
+				'type' => 'VARCHAR',
+				'constraint' => '32'
 			],
 			'image' => [
 				'type' => 'VARCHAR',

@@ -11,7 +11,7 @@ class PetugasSeeder extends Seeder
    {
       $time = Time::now();
       $data = [
-         'id'           => 18120571,
+         'nip'           => 18120571,
          'username'     => 'ferdian',
          'password'     => password_hash('ferdian123', PASSWORD_DEFAULT),
          'nama'         => 'ferdian arjun',

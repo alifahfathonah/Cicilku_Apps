@@ -110,6 +110,87 @@ class SubMenuSeeder extends Seeder
 				'created_at' 	=> $time->timestamp,
 				'updated_at' 	=> $time->timestamp
 			],
+			[
+				'menu_id' 		=> 4, //Teacher
+				'title'			=> 'Dashboard',
+				'url'				=> 'tc',
+				'icon'			=> 'fas fa-tachometer-alt',
+				'is_active'		=> '1',
+				'created_at' 	=> $time->timestamp,
+				'updated_at' 	=> $time->timestamp
+			],
+			[
+				'menu_id' 		=> 4, //Teacher
+				'title'			=> 'My Class',
+				'url'				=> 'myc',
+				'icon'			=> 'fas fa-chalkboard-teacher',
+				'is_active'		=> '1',
+				'created_at' 	=> $time->timestamp,
+				'updated_at' 	=> $time->timestamp
+			],
+			[
+				'menu_id' 		=> 4, //Teacher
+				'title'			=> 'My Class',
+				'url'				=> 'mys',
+				'icon'			=> 'fa fa-users',
+				'is_active'		=> '1',
+				'created_at' 	=> $time->timestamp,
+				'updated_at' 	=> $time->timestamp
+			],
+			[
+				'menu_id' 		=> 4, //Teacher
+				'title'			=> 'My Class',
+				'url'				=> 'deposit',
+				'icon'			=> 'fas fa-donate',
+				'is_active'		=> '1',
+				'created_at' 	=> $time->timestamp,
+				'updated_at' 	=> $time->timestamp
+			],
+			[
+				'menu_id' 		=> 4, //Teacher
+				'title'			=> 'Financial Report',
+				'url'				=> 'fr',
+				'icon'			=> 'fas fa-clipboard-list',
+				'is_active'		=> '1',
+				'created_at' 	=> $time->timestamp,
+				'updated_at' 	=> $time->timestamp
+			],
+			[
+				'menu_id' 		=> 5, //Students
+				'title'			=> 'Dashboard',
+				'url'				=> 'st',
+				'icon'			=> 'fas fa-tachometer-alt',
+				'is_active'		=> '1',
+				'created_at' 	=> $time->timestamp,
+				'updated_at' 	=> $time->timestamp
+			],
+			[
+				'menu_id' 		=> 5, //Students
+				'title'			=> 'My Transaction',
+				'url'				=> 'tr',
+				'icon'			=> 'fas fa-exchange-alt',
+				'is_active'		=> '1',
+				'created_at' 	=> $time->timestamp,
+				'updated_at' 	=> $time->timestamp
+			],
+			[
+				'menu_id' 		=> 5, //Students
+				'title'			=> 'My Teacher',
+				'url'				=> 'myt',
+				'icon'			=> 'fas fa-chalkboard-teacher',
+				'is_active'		=> '1',
+				'created_at' 	=> $time->timestamp,
+				'updated_at' 	=> $time->timestamp
+			],
+			[
+				'menu_id' 		=> 5, //Students
+				'title'			=> 'Withdraw',
+				'url'				=> 'cw',
+				'icon'			=> 'fas fa-money-bill-wave',
+				'is_active'		=> '1',
+				'created_at' 	=> $time->timestamp,
+				'updated_at' 	=> $time->timestamp
+			]
 		];
 
 		// Using Query Builder

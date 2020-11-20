@@ -11,6 +11,7 @@ class UserSeeder extends Seeder
 	{
 		$time = Time::now();
 		$data = [
+			'username' 			=> 'admin',
 			'name' 			=> 'admin',
 			'email' 			=> 'admin@cicilku.com',
 			'image' 			=> 'default.png',

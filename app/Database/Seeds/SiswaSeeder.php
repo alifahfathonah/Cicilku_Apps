@@ -11,7 +11,7 @@ class SiswaSeeder extends Seeder
    {
       $time = Time::now();
       $data = [
-         'id'           => 121212,
+         'nis'           => 121212,
          'username'     => 'budi',
          'password'     => password_hash('budi123', PASSWORD_DEFAULT),
          'nama'         => 'budi yanto',

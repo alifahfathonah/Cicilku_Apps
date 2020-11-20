@@ -10,9 +10,9 @@ class GuruModel extends Model
    protected $primaryKey = 'id';
    protected $useTimestamps = true;
    protected $dateFormat = 'int';
-   protected $allowedFields = ['nomor_induk', 'username', 'password', 'nama', 'role_id', 'is_active'];
+   protected $allowedFields = ['nip', 'username', 'password', 'email', 'nama', 'nohp', 'image', 'role_id', 'is_active'];
 
-   // protected $createdField  = 'created_at';
-   // protected $updatedField  = 'updated_at';
-   // protected $deletedField  = 'deleted_at';
+   protected $createdField  = 'created_at';
+   protected $updatedField  = 'updated_at';
+   protected $deletedField  = 'deleted_at';
 }

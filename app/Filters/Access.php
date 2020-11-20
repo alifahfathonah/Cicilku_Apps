@@ -21,9 +21,10 @@ class Access implements FilterInterface
       $this->userAccessMenuModel = new UserAccessMenuModel();
 
 
-      if (!session()->get('id_user')) {
+      if (!session()->get('role_id')) {
          return redirect()->to('/auth');
       } else {
+
          $role_id = session()->get('role_id');
 
          //ambil url dari segment url
@@ -36,7 +37,6 @@ class Access implements FilterInterface
          $menu_id =  $querySubMenu['menu_id'];
 
          //cocokan dengan access menu
-
 
          $cek = $this->userAccessMenuModel->where(['role_id' => $role_id, 'menu_id' => $menu_id])->first();
 

@@ -45,31 +45,76 @@ class Teacher extends BaseController
       return view('operator/guru/add_guru', $data);
    }
 
-   // public function save()
-   // {
-   //    //validation include
-   //    if (!$this->validate([
-   //       'role' => [
-   //          'rules' =>   'required|trim|is_unique[tbl_user_role.role]|alpha_space|max_length[128]',
-   //          'errors' => [
-   //             'required' => 'User role tidak boleh kosong!',
-   //             'is_unique' => 'User role sudah ada.'
-   //          ]
-   //       ]
-   //    ])) {
-   //       return redirect()->to('/users')->withInput()->with('validation', $this->validation);
-   //    }
+   public function save()
+   {
 
+      //validation include
+      if (!$this->validate([
+         'nip' => [
+            'rules' =>   'required|trim|is_unique[tbl_guru.id]|numeric',
+            'errors' => [
+               'required' => 'Nomor Induk Pegawai tidak boleh kosong!',
+               'is_unique' => 'Nomor Induk Pegawai sudah ada.',
+               'numeric' => 'Harus berupa angka.'
+            ]
+         ],
+         'nama' => [
+            'rules' =>   'required|trim',
+            'errors' => [
+               'required' => 'Nama tidak boleh kosong!',
+            ]
+         ],
+         'nohp' => [
+            'rules' =>   'required|trim|numeric',
+            'errors' => [
+               'required' => 'No Telephone tidak boleh kosong!',
+               'numeric' => 'Harus berupa angka.'
+            ]
+         ],
+         'email' => [
+            'rules' =>   'required|trim|valid_email',
+            'errors' => [
+               'required' => 'Email tidak boleh kosong!',
+               'valid_email' => 'Harus berupa Email!'
+            ]
+         ],
+         'username' => [
+            'rules' =>   'required|trim|is_unique[tbl_guru.username]|alpha_numeric',
+            'errors' => [
+               'required' => 'Username tidak boleh kosong!',
+               'is_unique' => 'Username sudah digunakan.',
+               'alpha_numeric' => 'Harus Berupa huruf atau angka atau kombinasinya.'
+            ]
+         ],
+         'password' => [
+            'rules' =>   'required|trim',
+            'errors' => [
+               'required' => 'Password tidak boleh kosong!',
 
-   //    if ($this->roleModel->save([
-   //       'role' => $this->request->getVar('role')
-   //    ])) {
-   //       session()->setFlashdata('pesan', 'Role user <b>' . $this->request->getVar('menu') . '</b> berhasil dibuat');
-   //       return redirect()->to('/users');
-   //    } else {
-   //       echo 'gagal';
-   //    }
-   // }
+            ]
+         ],
+      ])) {
+         return redirect()->to('/teachers/add')->withInput()->with('validation', $this->validation);
+      }
+      // dd($this->request->getVar());
+
+      if ($this->guruModel->save([
+         'nip' => $this->request->getVar('nip'),
+         'username' => $this->request->getVar('username'),
+         'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+         'email' => $this->request->getVar('email'),
+         'nama' => $this->request->getVar('nama'),
+         'nohp' => $this->request->getVar('nohp'),
+         'image' => 'default.png',
+         'role_id' => 3, //guru
+         'is_active' => 1
+      ])) {
+         session()->setFlashdata('pesan', ' Data <b>' . $this->request->getVar('nama') . '</b> berhasil dibuat');
+         return redirect()->to('/teachers');
+      } else {
+         echo 'gagal';
+      }
+   }
 
    // public function update()
    // {

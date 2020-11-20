@@ -11,11 +11,12 @@ class GuruSeeder extends Seeder
    {
       $time = Time::now();
       $data = [
-         'id'           => 11234,
+         'nip'           => 196806152006042006,
          'username'     => 'nartinah',
          'password'     => password_hash('nartinah123', PASSWORD_DEFAULT),
          'nama'         => 'Nartinah, S.Pd.SD',
-         'email'        => 'nartinah@cicilku.com',
+         'nohp'        => '081234567890',
+         'email'        => 'nartinah@gmail.com',
          'image'        => 'default.png',
          'role_id'      => 3, //guru
          'is_active'    => 1,

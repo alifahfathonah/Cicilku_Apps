@@ -13,7 +13,7 @@ class Auth implements FilterInterface
    public function before(RequestInterface $request, $arguments = null)
    {
 
-      if (session()->get('id_user')) {
+      if (session()->get('role_id')) {
          return redirect()->to('/admin');
       }
    }

@@ -63,10 +63,22 @@
                                     <input disabled id="image" type="file" name="image" class="custom-file-input input-default mt-0 <?= ($validation->hasError('image')) ? 'is-invalid form--danger' : ''; ?>" value="<?= old('image'); ?>">
                                     <label class="custom-file-label">Choose file</label>
                                  </div>
+                                 *default
                                  <div class="invalid-feedback">
                                     <span id="input-help" class="form-text text-danger"><?= $validation->getError('image'); ?></span>
                                  </div>
                               </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group row">
+                        <label for="nohp" class="col-lg-4 col-form-label">
+                           Telephone
+                        </label>
+                        <div class="col-lg-6">
+                           <input id="nohp" type="text" name="nohp" class="form-control input-default mt-0 <?= ($validation->hasError('nohp')) ? 'is-invalid form--danger' : ''; ?>" value="<?= old('nohp'); ?>">
+                           <div class="invalid-feedback">
+                              <span id="input-help" class="form-text text-danger"><?= $validation->getError('nohp'); ?></span>
                            </div>
                         </div>
                      </div>
