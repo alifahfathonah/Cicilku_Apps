@@ -15,7 +15,7 @@ class KelasModel extends Model
    protected $useSoftDeletes = true;
 
    protected $dateFormat = 'int';
-   protected $allowedFields = ['semester_id', 'kelas'];
+   protected $allowedFields = ['semester_id', 'guru_id', 'kelas', 'is_active'];
 
 
    protected $createdField  = 'created_at';

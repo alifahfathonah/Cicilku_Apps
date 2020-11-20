@@ -142,11 +142,11 @@ class Teacher extends BaseController
          //validation include
          if (!$this->validate([
             'nip' => [
-               'rules' =>   'required|trim|is_unique[tbl_guru.id]|numeric',
+               'rules' =>   'required|trim|is_unique[tbl_guru.nip]alpha_numeric',
                'errors' => [
                   'required' => 'Nomor Induk Pegawai tidak boleh kosong!',
                   'is_unique' => 'Nomor Induk Pegawai sudah ada.',
-                  'numeric' => 'Harus berupa angka.'
+                  'alpha_numeric' => 'Nomor Induk tidak benar.'
                ]
             ],
             'nama' => [

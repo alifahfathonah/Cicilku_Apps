@@ -7,6 +7,7 @@ use App\Models\SemesterModel;
 use App\Models\KelasModel;
 use App\Models\GuruModel;
 use App\Controllers\BaseController;
+use CodeIgniter\I18n\Time;
 
 class Kelas extends BaseController
 {
@@ -26,31 +27,43 @@ class Kelas extends BaseController
       $this->roleIdSession = session()->get('role_id');
    }
 
-   public function index()
+   public function index($semester_id = null)
    {
-
-      if ($this->request->getVar('s')) {
-         $set = $this->request->getVar('s');
+      if ($semester_id) {
+         $data = [
+            'title' => 'Class Management',
+            'subMenuTitle' => 'Class Management',
+            'user' => $this->petugasModel->where(['id' => $this->idUserSession])->first(),
+            'db' =>  $this->db,
+            'semester' => $this->semesterModel->findAll(),
+            'detail_semester' => $this->semesterModel->where(['id' => decrypt_url($semester_id)])->first(),
+            'kelas' => $this->kelasModel->where('semester_id', (decrypt_url($semester_id)))->orderBy('kelas', 'ASC')->findAll(),
+            'validation' => $this->validation
+         ];
+         return view('operator/kelas/index', $data);
       } else {
-         $get = $this->db->table('tbl_semester')->select()->orderBy('periode_akhir', 'DESC')->get();
-         $get = $get->getResultArray();
-         $set = $get[0]['id'];
-      }
+         $data = [
+            'title' => 'Class Management',
+            'subMenuTitle' => 'Class Management',
+            'user' => $this->petugasModel->where(['id' => $this->idUserSession])->first(),
+            'db' =>  $this->db,
+            'semester' => $this->semesterModel->findAll(),
+            'kelas' => $this->kelasModel->findAll(),
+            'validation' => $this->validation
+         ];
 
-      $data = [
-         'title' => 'Class Management',
-         'subMenuTitle' => 'Class Management',
-         'user' => $this->petugasModel->where(['id' => $this->idUserSession])->first(),
-         'db' =>  $this->db,
-         'semester' => $this->semesterModel->findAll(),
-         'dsemester' => $this->semesterModel->where(['id' => $set])->first(),
-         'kelas' => $this->kelasModel->findAll(),
-         'validation' => $this->validation
-      ];
-      return view('operator/kelas/index', $data);
+
+         $time = Time::now();
+         $time->timestamp;
+         $semesternow =  $this->semesterModel->having(['periode_awal <= ' => $time->timestamp, 'periode_akhir >= ' => $time->timestamp])->findAll();
+         if ($semesternow) {
+            return redirect()->to('/class/semester/' . encrypt_url($semesternow[0]['id']));
+         }
+         return view('operator/kelas/index', $data);
+      }
    }
 
-   public function add()
+   public function add($id_semester = null)
    {
 
       $data = [
@@ -59,121 +72,93 @@ class Kelas extends BaseController
          'user' => $this->petugasModel->where(['id' => $this->idUserSession])->first(),
          'db' =>  $this->db,
          'semester' => $this->semesterModel->findAll(),
-         'dsemester' => $this->semesterModel->where(['id' => $this->request->getVar('s')])->first(),
+         'dsemester' => $this->semesterModel->where(['id' => decrypt_url($id_semester)])->first(),
          'guru' => $this->guruModel->findAll(),
          'kelas' => $this->kelasModel->findAll(),
          'validation' => $this->validation
       ];
+
+
       return view('operator/kelas/add_kelas', $data);
    }
 
-   // public function save()
-   // {
-
-   //    //validation include
-   //    if (!$this->validate([
-   //       'semester' => [
-   //          'rules' =>   'required|trim',
-   //          'errors' => [
-   //             'required' => 'pilih semester!',
-   //          ]
-   //       ],
-   //       'start' => [
-   //          'rules' =>   'required|trim',
-   //          'errors' => [
-   //             'required' => 'periode jangan kosong!',
-   //          ]
-   //       ],
-   //       'end' => [
-   //          'rules' =>   'required|trim',
-   //          'errors' => [
-   //             'required' => 'periode jangan kosong!',
-   //          ]
-   //       ]
-   //    ])) {
-   //       return redirect()->to('/semester')->withInput()->with('validation', $this->validation);
-   //    }
+   public function save()
+   {
+      if ($this->kelasModel->where(['semester_id' => $this->request->getVar('semester')])->where(['kelas' => $this->request->getVar(['title'])])->first()) {
+         session()->setFlashdata('pesan', 'Kelas <b>' . $this->request->getVar('title') . '</b> sudah ada');
+         return redirect()->to('/class/' . encrypt_url($this->request->getVar('semester')) . '/add');
+      } else {
+         $is_active = ($this->request->getVar('is_active')) ? 1 : 0;
+         if ($this->kelasModel->save([
+            'semester_id' => $this->request->getVar('semester'),
+            'guru_id' => $this->request->getVar('guru'),
+            'kelas' => $this->request->getVar('title'),
+            'is_active' =>  $is_active
+         ])) {
+            session()->setFlashdata('pesan', 'Kelas <b>' . $this->request->getVar('title') . '</b> berhasil dibuat');
+            return redirect()->to('/class/semester/' . encrypt_url($this->request->getVar('semester')));
+         } else {
+            echo 'gagal';
+         }
+      }
+   }
 
 
-   //    if ($this->semesterModel->save([
-   //       'semester' => $this->request->getVar('semester'),
-   //       'periode_awal' => strtotime($this->request->getVar('start')),
-   //       'periode_akhir' => strtotime($this->request->getVar('end')),
+   public function update($id_semester = null, $id_kelas = null)
+   {
+      if ($id_kelas) {
 
-   //    ])) {
-   //       session()->setFlashdata('pesan', 'Semester <b>' . $this->request->getVar('semester') . '</b> berhasil dibuat');
-   //       return redirect()->to('/semester');
-   //    } else {
-   //       echo 'gagal';
-   //    }
-   // }
+         $data = [
+            'title' => 'Edit Class',
+            'subMenuTitle' => 'Class Management',
+            'user' => $this->petugasModel->where(['id' => $this->idUserSession])->first(),
+            'db' =>  $this->db,
+            'semester' => $this->semesterModel->findAll(),
+            'dsemester' => $this->semesterModel->where(['id' => decrypt_url($id_semester)])->first(),
+            'kelas' => $this->kelasModel->where(['id' => decrypt_url($id_kelas)])->first(),
+            'guru' => $this->guruModel->findAll(),
+            'validation' => $this->validation
+         ];
+         return view('operator/kelas/edit_kelas', $data);
+      } else {
 
-   // public function edit()
-   // {
-   //    $sid = $this->request->getVar('sid');
-   //    $data = [
-   //       'title' => 'Edit Semester',
-   //       'subMenuTitle' => 'Semester Management',
-   //       'user' => $this->petugasModel->where(['id' => $this->idUserSession])->first(),
-   //       'db' =>  $this->db,
-   //       's' => $this->semesterModel->where(['id' => $sid])->first(),
-   //       'validation' => $this->validation
-   //    ];
+         if ($this->kelasModel
+            ->where([
+               'semester_id' => $this->request->getVar('semester'),
+               'kelas' => $this->request->getVar('title'),
+               'id !=' => $this->request->getVar('id')
+            ])->first()
+         ) {
+            session()->setFlashdata('pesan', 'Kelas <b>' . $this->request->getVar('title') . '</b> sudah ada');
+            return redirect()->to('/class/' . encrypt_url($this->request->getVar('semester')) . '/' . encrypt_url($this->request->getVar('id')) . '/edit');
+         } else {
 
-   //    return view('operator/semester/edit_semester', $data);
-   // }
+            $is_active = ($this->request->getVar('is_active')) ? 1 : 0;
+            if ($this->kelasModel->save([
+               'id' => $this->request->getVar('id'),
+               'semester_id' => $this->request->getVar('semester'),
+               'guru_id' => $this->request->getVar('guru'),
+               'kelas' => $this->request->getVar('title'),
+               'is_active' =>  $is_active
+            ])) {
+               session()->setFlashdata('pesan', '<b>' . $this->request->getVar('title') . '</b> berhasil diupdate');
+               return redirect()->to('/class/semester/' . encrypt_url($this->request->getVar('semester')));
+            } else {
+               echo 'gagal';
+            }
+         }
+      }
+   }
+   public function delete()
+   {
 
-   // public function update()
-   // {
-   //    $sid = $this->request->getVar('id');
-   //    //validation include
-   //    if (!$this->validate([
-   //       'semester' => [
-   //          'rules' =>   'required|trim',
-   //          'errors' => [
-   //             'required' => 'pilih semester!',
-   //          ]
-   //       ],
-   //       'start' => [
-   //          'rules' =>   'required|trim',
-   //          'errors' => [
-   //             'required' => 'periode jangan kosong!',
-   //          ]
-   //       ],
-   //       'end' => [
-   //          'rules' =>   'required|trim',
-   //          'errors' => [
-   //             'required' => 'periode jangan kosong!',
-   //          ]
-   //       ]
-   //    ])) {
-   //       return redirect()->to('/semester/edit?sid=' . $sid)->withInput()->with('validation', $this->validation);
-   //    }
-
-   //    // dd($this->request->getVar());
-   //    if ($this->semesterModel->save([
-   //       'id' => $this->request->getVar('semester_id'),
-   //       'semester' => $this->request->getVar('semester'),
-   //       'periode_awal' => strtotime($this->request->getVar('start')),
-   //       'periode_akhir' => strtotime($this->request->getVar('end')),
-   //    ])) {
-   //       session()->setFlashdata('pesan', 'Role user menu <b>' . $this->request->getVar('semester') . '</b> berhasil diupdate');
-   //       return redirect()->to('/semester');
-   //    } else {
-   //       echo 'gagal';
-   //    }
-   // }
-
-   // public function delete()
-   // {
-   //    if ($this->semesterModel->delete(['id' => $this->request->getPost('sid')])) {
-
-   //       session()->setFlashdata('pesan', 'Semester periode <b>' . $this->request->getVar('periode') . '</b> berhasil dihapus');
-   //       return redirect()->to('/semester');
-   //    } else {
-   //       echo 'gagal';
-   //    }
-   // }
+      if ($this->kelasModel->delete(['id', $this->request->getVar('id')])) {
+         session()->setFlashdata('pesan', 'Data <b>' . $this->request->getVar('nama') . '</b>  berhasil di delete');
+         return redirect()->to('/class');
+      } else {
+         echo 'gagal';
+      }
+   }
 
    //--------------------------------------------------------------------
 

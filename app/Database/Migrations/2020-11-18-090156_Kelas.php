@@ -18,16 +18,18 @@ class Kelas extends Migration
 			'semester_id' => [
 				'type' => 'INT',
 				'constraint' => 11,
-				'null' => TRUE
 			],
 			'guru_id' => [
 				'type' => 'INT',
 				'constraint' => 11,
-				'null' => TRUE
 			],
 			'kelas' => [
 				'type' => 'VARCHAR',
 				'constraint' => '128'
+			],
+			'is_active' => [
+				'type' => 'INT',
+				'constraint' => 1
 			],
 			'created_at' => [
 				'type' => 'INT',

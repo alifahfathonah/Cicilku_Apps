@@ -67,7 +67,7 @@
                               <td><?= $n++; ?></td>
                               <td> <?= $g['nip']; ?></td>
                               <td>
-                                 <img src="<?= base_url('asset/users/img/default.png'); ?>" class=" rounded-circle mr-3 img-thumbnail" alt="" width="30px">
+                                 <img src="<?= base_url('asset/users/img/' . $g['image']); ?>" class=" rounded-circle mr-3 img-thumbnail" alt="" width="30px">
                                  <?= $g['nama']; ?>
                               </td>
                               <td><?= $g['username']; ?></td>

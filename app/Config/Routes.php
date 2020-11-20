@@ -90,9 +90,12 @@ $routes->post('/teachers/delete', 'Teacher::delete', ['filter' => 'access']);
 
 //kelas-man route
 $routes->get('/class', 'Kelas::index', ['filter' => 'access']);
-$routes->get('/class/add', 'Kelas::add', ['filter' => 'access']);
-
-
+$routes->get('/class/semester/(:any)', 'Kelas::index/$1', ['filter' => 'access']);
+$routes->get('/class/(:any)/add', 'Kelas::add/$1', ['filter' => 'access']);
+$routes->get('/class/(:any)/(:any)/edit', 'Kelas::update/$1/$2', ['filter' => 'access']);
+$routes->post('/class/update', 'Kelas::update', ['filter' => 'access']);
+$routes->post('/class/save', 'Kelas::save', ['filter' => 'access']);
+$routes->post('/class/delete', 'Kelas::delete', ['filter' => 'access']);
 
 //guru-dash route
 $routes->get('/tc', 'Guru::index', ['filter' => 'access']);
