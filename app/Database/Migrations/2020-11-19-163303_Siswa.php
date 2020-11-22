@@ -34,6 +34,21 @@ class Siswa extends Migration
 				'type' => 'VARCHAR',
 				'constraint' => '128'
 			],
+			'nohp' => [
+				'type' => 'VARCHAR',
+				'constraint' => '13'
+			],
+			'jk' => [
+				'type' => 'VARCHAR',
+				'constraint' => '13'
+			],
+			'orangtua' => [
+				'type' => 'VARCHAR',
+				'constraint' => '128'
+			],
+			'alamat' => [
+				'type' => 'TEXT',
+			],
 			'image' => [
 				'type' => 'VARCHAR',
 				'constraint' => '128'

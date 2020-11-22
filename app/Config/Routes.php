@@ -83,7 +83,7 @@ $routes->get('/teachers', 'Teacher::index', ['filter' => 'access']);
 $routes->get('/teachers/(:any)/edit', 'Teacher::update/$1', ['filter' => 'access']);
 $routes->post('/teachers/update', 'Teacher::update', ['filter' => 'access']);
 $routes->post('/teachers/changepassword', 'Teacher::changepassword', ['filter' => 'access']);
-$routes->get('/teachers/add', 'Teacher::add', ['filter' => 'access']);
+$routes->add('/teachers/add', 'Teacher::add', ['filter' => 'access']);
 $routes->post('/teachers/save', 'Teacher::save', ['filter' => 'access']);
 $routes->post('/teachers/delete', 'Teacher::delete', ['filter' => 'access']);
 
@@ -96,6 +96,17 @@ $routes->get('/class/(:any)/(:any)/edit', 'Kelas::update/$1/$2', ['filter' => 'a
 $routes->post('/class/update', 'Kelas::update', ['filter' => 'access']);
 $routes->post('/class/save', 'Kelas::save', ['filter' => 'access']);
 $routes->post('/class/delete', 'Kelas::delete', ['filter' => 'access']);
+
+//students-man route
+$routes->get('/students', 'Students::index', ['filter' => 'access']);
+$routes->get('/students/add', 'Students::add', ['filter' => 'access']);
+$routes->get('/students-rek/(:any)/(:any)/(:any)', 'Students::add_rekening/$1/$2/$3');
+$routes->get('/students/(:any)/edit', 'Students::update/$1', ['filter' => 'access']);
+$routes->get('/students/(:any)', 'Students::index/$1', ['filter' => 'access']);
+$routes->post('/students/update', 'Students::update', ['filter' => 'access']);
+$routes->post('/students/save', 'Students::save', ['filter' => 'access']);
+$routes->post('/students/delete', 'Students::delete', ['filter' => 'access']);
+
 
 //guru-dash route
 $routes->get('/tc', 'Guru::index', ['filter' => 'access']);

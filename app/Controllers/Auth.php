@@ -58,7 +58,7 @@ class Auth extends BaseController
 		$userModel = [
 			'1' => $this->guruModel->where(['username' => $username])->orWhere(['nip' => $username])->first(),
 			'2' => $this->userModel->where(['username' => $username])->first(),
-			'3' => $this->siswaModel->where(['username' => $username])->orWhere(['nis' => $username])->first(),
+			'3' => $this->siswaModel->where(['username' => $username])->orWhere(['nisn' => $username])->first(),
 			'4' => $this->petugasModel->where(['username' => $username])->orWhere(['nip' => $username])->first(),
 		];
 

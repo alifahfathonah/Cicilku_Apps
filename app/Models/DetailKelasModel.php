@@ -4,13 +4,19 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SiswaModel extends Model
+class DetailKelasModel extends Model
 {
-   protected $table = 'tbl_siswa';
+   protected $table = 'tbl_detail_kelas';
+
    protected $primaryKey = 'id';
    protected $useTimestamps = true;
+
+   protected $returnType     = 'array';
+   protected $useSoftDeletes = true;
+
    protected $dateFormat = 'int';
-   protected $allowedFields = ['nisn', 'username', 'password', 'email', 'jk', 'kelas_id', 'ttl', 'nama', 'nohp', 'orangtua', 'image', 'alamat', 'rekening_id', 'role_id', 'is_active'];
+   protected $allowedFields = ['kelas_id', 'siswa_id'];
+
 
    protected $createdField  = 'created_at';
    protected $updatedField  = 'updated_at';
