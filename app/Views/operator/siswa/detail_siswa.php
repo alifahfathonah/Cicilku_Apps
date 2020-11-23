@@ -91,10 +91,11 @@
                            <div class="tab-pane fade show active" id="transaction" role="tabpanel">
                               <div class="p-t-15">
                                  <h4>This is Transaction</h4>
+                                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
+                                 <h1>Saldo : <span><?= rupiah($rekening['saldo']); ?></span></h1>
+                                 <a href="<?= base_url('students/topup/' . encrypt_url($siswa['id'])); ?>" class="btn btn-danger"> top up</a>
                                  <div class="form-group">
-
                                  </div>
-                                 <a href="http://"></a>
                               </div>
                            </div>
                            <div class="tab-pane fade" id="activitys">

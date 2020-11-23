@@ -97,6 +97,10 @@ $routes->post('/class/update', 'Kelas::update', ['filter' => 'access']);
 $routes->post('/class/save', 'Kelas::save', ['filter' => 'access']);
 $routes->post('/class/delete', 'Kelas::delete', ['filter' => 'access']);
 
+//tester
+$routes->get('/students/topup/(:any)', 'Rekening::topup/$1', ['filter' => 'access']);
+$routes->post('/rekening/setor', 'Rekening::setor', ['filter' => 'access']);
+
 //students-man route
 $routes->get('/students', 'Students::index', ['filter' => 'access']);
 $routes->get('/students/add', 'Students::add', ['filter' => 'access']);
@@ -107,6 +111,10 @@ $routes->post('/students/update', 'Students::update', ['filter' => 'access']);
 $routes->post('/students/save', 'Students::save', ['filter' => 'access']);
 $routes->post('/students/delete', 'Students::delete', ['filter' => 'access']);
 
+//savings-man router
+$routes->post('/savings/update', 'Savings::update', ['filter' => 'access']);
+$routes->get('/savings', 'Savings::index', ['filter' => 'access']);
+
 
 //guru-dash route
 $routes->get('/tc', 'Guru::index', ['filter' => 'access']);
@@ -116,6 +124,8 @@ $routes->get('/tc', 'Guru::index', ['filter' => 'access']);
 //siswa-dash route
 $routes->get('/st', 'Siswa::index', ['filter' => 'access']);
 // $routes->get('/(:any)', 'Auth::index', ['filter' => 'access']);
+
+
 
 
 
